@@ -1,3 +1,8 @@
-<p>{{game.pk}}-{{game.attack_user}}vs{{game.defend_user}}</p>
-<p>{{game.now}}</p>
-<p>나:{{game.attack_num}}</p>
+<p>{{game.id}}-{{game.attack_user}}vs{{game.defend_user}}</p>
+{% if game.game_now %}
+    <p>{{game_result}}</p>
+{% else %}
+    <p>진행 중</p>
+{% endif %}
+
+<p>나: {{game.attack_num}}</p>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Options</title>
+</head>
+<body>
+    {% for game in games %}
+    <p>Now: {{ game.now }}</p>
+    <p>Attack Num: {{ game.attack_num }}</p>
+    <p>Defend Num: {{ game.defend_num }}</p>
+    <p>Attack User: {{ game.attack_user }}</p>
+    <p>Defend User: {{ game.defend_user }}</p>
+    <form action="{% url 'game:attack' game.id %}" method="post">
+        {% csrf_token %}
+        <select name="selected_option">
+            {% for option in options %}
+            <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">공격하기</button>
+    </form>
+    {% endfor %}
+</body>
+</html>

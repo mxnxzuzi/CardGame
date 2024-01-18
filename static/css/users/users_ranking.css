@@ -1,0 +1,32 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ranking-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 8rem;
+  width: 30%;
+  height: 50%;
+  background-color: black;
+  padding: 3rem;
+  gap: 2rem;
+}
+.rank {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+button {
+  background-color: transparent;
+  color: white;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border: 3px solid white;
+  cursor: pointer;
+  font-family: "WarhavenB";
+  width: 7rem;
+}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{%static 'css/users/users_ranking.css'%}" />
+<title>랭킹보기</title>
+{% endblock %} {% block content %}
+<div class="ranking-container">
+  <p>Piro 명예의 전당</p>
+
+  <div class="rank">
+    <p>'1'등</p>
+    <p>'이름'</p>
+    <p>총점수: '10'점</p>
+  </div>
+  <div class="rank">
+    <p>'2'등</p>
+    <p>'이름'</p>
+    <p>총점수: '10'점</p>
+  </div>
+  <div class="rank">
+    <p>'3'등</p>
+    <p>'이름'</p>
+    <p>총점수: '10'점</p>
+  </div>
+
+  <a href="{% url 'game:list'%}"><button id="view-all">전체 목록</button></a>
+</div>
+{% endblock %}

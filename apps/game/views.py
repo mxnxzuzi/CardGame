@@ -9,7 +9,10 @@ def attack(request):
 def game_list(request):
     return render(request, 'game/game_list.html')
 
-def login(request):
-    return render(request, 'game/game_login.html')
+def detail(request):
+    return render(request, 'game/game_detail.html')
+
+def defend(request):
+    return render(request, 'game/game_defend.html')
 
 # Create your views here.

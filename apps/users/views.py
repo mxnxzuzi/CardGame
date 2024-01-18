@@ -6,3 +6,6 @@ def login(request):
 
 def ranking(request):
     return render(request,'users/users_ranking.html')
+
+def signup(request):
+    return render(request, 'users/users_signup.html')

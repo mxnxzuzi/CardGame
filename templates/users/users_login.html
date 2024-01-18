@@ -13,5 +13,14 @@
     <div></div>
     <p>네이버 계정 로그인</p>
   </div>
+  <form method="POST" action="">
+    {% csrf_token %} {{ form }}
+    <button class="form-btn">Login</button>
+  </form>
+  <a href="{% url 'users:signup'%}">
+    <div id="signup-btn">
+      <p>회원가입</p>
+    </div>
+  </a>
 </div>
 {% endblock %}

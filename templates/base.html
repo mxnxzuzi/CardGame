@@ -15,6 +15,11 @@
       </a>
       {%if not users.is_authenticated %}
       <!-- 우선 로그인 되었다고 가정하고 진행, 나중에 순서바꾸기 -->
+      <a href="{% url 'users:login'%}">
+        <div class="header-btn">로그인</div>
+      </a>
+      {%else %}
+
       <div id="logining">
         <a href="{% url 'game:attack'%}">
           <div class="header-btn">게임하기</div>
@@ -26,11 +31,6 @@
           <div class="header-btn">로그아웃</div>
         </a>
       </div>
-      {%else %}
-      <a href="{% url 'users:login'%}">
-        <div class="header-btn">로그인</div>
-      </a>
-
       {% endif %}
     </header>
     {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{%static 'css/game/game_login.css'%}" />
+<title>소셜 로그인</title>
+{% endblock %} {% block header %} {% endblock %} {% block content %}
+<div id="login-container">
+  <div id="login-logo">CARDGAME</div>
+  <br />
+  <div id="google-btn">
+    <div></div>
+    <p>구글 계정 로그인</p>
+  </div>
+  <div id="naver-btn">
+    <div></div>
+    <p>네이버 계정 로그인</p>
+  </div>
+</div>
+{% endblock %}

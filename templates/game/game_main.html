@@ -6,18 +6,9 @@
     <title>Random Options</title>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="{% url 'game:main' %}" method="post">
         {% csrf_token %}
-        <select name="selected_option">
-            {% for option in options %}
-            <option value="{{ option }}">{{ option }}</option>
-            {% endfor %}
-        </select>
-        <select name="selected_user">
-            {% for user in users %}
-            <option value="{{ user.id }}">{{ user.username }}</option>
-            {% endfor %}
-        </select> 
+        {{form.as_p}}
         <button type="submit">공격하기</button>
     </form>
 </body>

@@ -3,26 +3,27 @@ from django.http import HttpResponseRedirect
 from apps.users.models import User
 from .models import *
 import random
+from .forms import GameForm
 
 def main(request):
     if request.method == 'POST':
-        selected_option = request.POST.get('selected_option')
-        selected_user_id = request.POST.get('selected_user')
-        
-        if selected_option and selected_user_id:
-            # 선택한 사용자와 옵션을 사용하여 Game 객체 생성
-            selected_user = User.objects.get(id=selected_user_id)
-            game = Game.objects.create(defend_user=selected_user, attack_num=selected_option,  attack_user=request.user)
-            
+        form = GameForm(request.POST)
+        if form.is_valid():
+            game = form.save(commit=False)
+            game.attack_user = request.user 
+            game.save()
             return redirect('game:attack', pk=game.id)
-    
-    # GET 요청이거나 선택된 값이 없는 경우
+        
+    else:
+        form = GameForm()
+
     user = request.user
     other_users = User.objects.exclude(id=user.id)
     games = Game.objects.all()
     options = random.sample(range(1, 11), 5)
-    ctx = {'users': other_users, 'options': options, 'games': games}
+    ctx = {'users': other_users, 'options': options, 'games': games, 'form': form}
     return render(request, 'game/game_main.html', ctx)
+
 
 def attack(request, pk):
     game = Game.objects.get(id=pk)

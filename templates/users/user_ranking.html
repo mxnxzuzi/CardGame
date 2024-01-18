@@ -1,0 +1,7 @@
+{% extends '../index.html' %}
+
+{% block content %}
+{% for ranker in rankers %}
+    <div>{{ranker.username}} !! {{ranker.points}} !! </div>
+{% endfor %}
+{% endblock content %}

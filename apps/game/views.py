@@ -12,7 +12,7 @@ def main(request):
         if selected_option and selected_user_id:
             # 선택한 사용자와 옵션을 사용하여 Game 객체 생성
             selected_user = User.objects.get(id=selected_user_id)
-            game = Game.objects.create(defend_user=selected_user, attack_num=selected_option, defend_num=1, attack_user=request.user)
+            game = Game.objects.create(defend_user=selected_user, attack_num=selected_option,  attack_user=request.user)
             
             return redirect('game:attack', pk=game.id)
     
@@ -28,22 +28,22 @@ def attack(request, pk):
     game = Game.objects.get(id=pk)
     ctx = {'game': game}
     
-    game_number = random.randint(1, 2)
-
-    if game_number == 1:
-        # 게임 1: 수가 클 때 이기는 게임
-        if game.attack_num > game.defend_num:
-            ctx['game_result'] = "수가 클 때 이깁니다! {}승!".format(game.attack_user)
+    if game.attack_num == 0 or game.defend_num == 0:
+        game.game_now = False
+    else :
+        if game.game_num == 1:
+            # 게임 1: 수가 클 때 이기는 게임
+            if game.attack_num > game.defend_num:
+                ctx['game_result'] = "수가 클 때 이깁니다! {}승!".format(game.attack_user)
+            else:
+                ctx['game_result'] = "수가 클 때 이깁니다! {}승!".format(game.defend_user)
         else:
-            ctx['game_result'] = "수가 클 때 이깁니다! {}승!".format(game.defend_user)
-    else:
-        # 게임 2: 수가 작을 때 이기는 게임
-        if game.attack_num < game.defend_num:
-            ctx['game_result'] = "수가 작을 때 이깁니다! {}승!".format(game.attack_user)
-        else:
-            ctx['game_result'] = "수가 작을 때 이깁니다! {}승!".format(game.defend_user)
-    
-    game.game_now = True
+            # 게임 2: 수가 작을 때 이기는 게임
+            if game.attack_num < game.defend_num:
+                ctx['game_result'] = "수가 작을 때 이깁니다! {}승!".format(game.attack_user)
+            else:
+                ctx['game_result'] = "수가 작을 때 이깁니다! {}승!".format(game.defend_user)
+        
+        game.game_now = True
     game.save()
-    print(game.game_now)
     return render(request, 'game/game_attack.html', ctx)

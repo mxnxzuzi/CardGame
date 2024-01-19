@@ -7,7 +7,7 @@ from .forms import GameForm
 
 def main(request):
     if request.method == 'POST':
-        form = GameForm(request.POST)
+        form = GameForm(request.POST, current_user=request.user)
         if form.is_valid():
             game = form.save(commit=False)
             game.attack_user = request.user 

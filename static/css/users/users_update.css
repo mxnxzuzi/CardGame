@@ -1,0 +1,69 @@
+/* users_update.css */
+
+.user_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .user_u {
+    min-width: 500px;
+    padding: 20px;
+    background-color: #f2f2f2aa;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(11, 171, 40);
+    padding: 50px;
+  }
+  
+  .user_u form {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .create_form {
+    display: flex;
+    flex-direction: column;
+  }
+  .user_u .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .user_u button {
+    margin-top: 50px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .user_u .btn-success {
+    width: 100px;
+    height: 50px;
+    background-color: #28a745;
+  }
+  .user_u .btn-success:hover {
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+  }
+  .user_u .btn-danger {
+    width: 100px;
+    height: 50px;
+    background-color: #dc3545;
+  }
+  .user_u .btn-danger:hover {
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+  }
+  .user_u input[type="text"] {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+.de_btn {
+    display: flex;
+    justify-content: space-around;
+}
+  

@@ -26,9 +26,9 @@ def defend(request, pk):
     game.now = True
     game.save()
 
-    counter = request.POST.get('counter', None)
     users = User.objects.all()
     user_game = Game.objects.get(id=pk)
+    counter = request.POST.get('counter', None)
     user_nickname = auth.get_user(request).nickname
     user_num = 0
     enemy = ''

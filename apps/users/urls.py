@@ -10,4 +10,7 @@ urlpatterns = [
     path("signup/", signup, name="signup"),
     path("ranking/", ranking, name="ranking"),
     path("set_name/", set_name, name="setname"),
+    path('delete/<int:pk>/', delete, name ='delete'),
+    path('update/<int:pk>/', update, name ='update'),
+    #path('detail/<int:pk>/', detail, name='detail'),
 ]

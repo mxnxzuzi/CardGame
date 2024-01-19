@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block head %}
+  <title>Documents</title>
+  <link rel="stylesheet" href="{%static 'css/users/users_update.css'%}" />
+{% endblock %}
+
+{% block content %}
+  <div class="user_wrap">
+      <div class="user_u">
+          <form
+            action="{% url 'users:update' pk %}"
+            method="post"
+            class="create_form"
+          >
+            {% csrf_token %}
+            <div>
+                {{ form.nickname.label_tag }}
+                {{ form.nickname }}
+            </div>
+            <button class="btn-success">수정완료</button>
+      </form>
+                <form action="{% url 'users:delete' user.pk %}" method="POST" id="detail_form" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                {% csrf_token %}
+                <button type="submit" class="btn-danger">계정삭제</button>
+                </form>
+      </div>
+  </div>
+{% endblock %}

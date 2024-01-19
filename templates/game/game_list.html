@@ -4,77 +4,76 @@
 
 {%block content%}
 
-<div class="game-container">
-  <div id="description">
-    현재 접속중인 플레이어의 게임 전적을 보여주는 페이지입니다. 공수와 관계없이 플레이어는 왼쪽으로 정렬됐습니다.<br />진행 중인 게임은 취소할 수 있어요.
-  </div>
-  <div id="login-info">
-    <p>현재 플레이어: {{user.nickname}}</p>
-  </div>
-  <div id="game-list">
-    {% for user_game in user_games %}
-    <div class="game">
+<div id="description">
+  <p>게임전적</p>
+  당신의 게임 전적을 모두 보여주는 페이지입니다. 게임의 승패에 따라, 당신의 카드에 따라 포인트가 적립, 삭제됩니다. <br />진행 중인 게임은 취소할 수 있으며 결과가 나온 게임은 다시 되돌릴 수 없습니다.
+</div>
+<div id="login-info">
+  <p><strong>|</strong> 현재 플레이어: {{user.nickname}}</p>
+</div>
+<div id="game-list">
+  {% for user_game in user_games %}
+  <div class="game">
+    {% if user_game.attack_user.id == user.id %}
+    <div class="user-info"><strong>{{ forloop.revcounter }}</strong> - <strong>VS</strong> {{ user_game.defend_user.nickname }}</div>
+    {% else %}
+    <div class="user-info"><strong>{{ forloop.revcounter }}</strong> - <strong>VS</strong> {{ user_game.attack_user.nickname }}</div>
+    {% endif %}
+
+    {% if user_game.now == False %}
       {% if user_game.attack_user.id == user.id %}
-      <div class="user-info"><p style="color:lightgreen">{{ forloop.revcounter }}</p> - {{ user_game.attack_user.nickname }} <p style="color:lightgreen">VS</p> {{ user_game.defend_user.nickname }}</div>
+      <div class="game-info">
+        진행중...
+        <form action="{% url 'game:delete' user_game.id %}" method="post">
+          {% csrf_token %}
+          <button>게임 취소</button>
+        </form>
+      </div>
       {% else %}
-      <div class="user-info"><p style="color:lightgreen">{{ forloop.revcounter }}</p> - {{ user_game.defend_user.nickname }} <p style="color:lightgreen">VS</p> {{ user_game.attack_user.nickname }}</div>
+      <div class="game-info">
+        진행중...
+        <a href="{% url 'game:defend' user_game.id %}?counter={{ forloop.revcounter }}"><button>반격하기</button></a>
+      </div>
       {% endif %}
-  
-      {% if user_game.now == False %}
+    {% else %}
+      {% if user_game.attack_num == user_game.defend_num %}
+      <div class="game-info">결과: 무승부</div>
+      {% endif %}
+      {% if user_game.game_num == 1 %}
         {% if user_game.attack_user.id == user.id %}
-        <div class="game-info">
-          진행중...
-          <form action="{% url 'game:delete' user_game.id %}" method="post">
-            {% csrf_token %}
-            <button>게임 취소</button>
-          </form>
-        </div>
+          {% if user_game.attack_num < user_game.defend_num %}
+          <div class="game-info">결과: 승리</div>
+          {% elif user_game.attack_num > user_game.defend_num %}
+          <div class="game-info">결과: 패배</div>
+          {% endif %}
         {% else %}
-        <div class="game-info">
-          진행중...
-          <a href="{% url 'game:defend' user_game.id %}?counter={{ forloop.revcounter }}">반격하기</a>
-        </div>
+          {% if user_game.attack_num < user_game.defend_num %}
+          <div class="game-info">결과: 패배</div>
+          {% elif user_game.attack_num > user_game.defend_num %}
+          <div class="game-info">결과: 승리</div>
+          {% endif %}
         {% endif %}
       {% else %}
-        {% if user_game.attack_num == user_game.defend_num %}
-        <div class="game-info">결과: 무승부</div>
-        {% endif %}
-        {% if user_game.game_num == 1 %}
-          {% if user_game.attack_user.id == user.id %}
-            {% if user_game.attack_num < user_game.defend_num %}
+        {% if user_game.attack_user.id == user.id %}
+            {% if user_game.attack_num > user_game.defend_num %}
             <div class="game-info">결과: 승리</div>
-            {% elif user_game.attack_num > user_game.defend_num %}
+            {% elif user_game.attack_num < user_game.defend_num %}
             <div class="game-info">결과: 패배</div>
             {% endif %}
-          {% else %}
-            {% if user_game.attack_num < user_game.defend_num %}
-            <div class="game-info">결과: 패배</div>
-            {% elif user_game.attack_num > user_game.defend_num %}
-            <div class="game-info">결과: 승리</div>
-            {% endif %}
-          {% endif %}
         {% else %}
-          {% if user_game.attack_user.id == user.id %}
-              {% if user_game.attack_num > user_game.defend_num %}
-              <div class="game-info">결과: 승리</div>
-              {% elif user_game.attack_num < user_game.defend_num %}
-              <div class="game-info">결과: 패배</div>
-              {% endif %}
-          {% else %}
-              {% if user_game.attack_num > user_game.defend_num %}
-              <div class="game-info">결과: 패배</div>
-              {% elif user_game.attack_num < user_game.defend_num %}
-              <div class="game-info">결과: 승리</div>
-              {% endif %}
-          {% endif %}
+            {% if user_game.attack_num > user_game.defend_num %}
+            <div class="game-info">결과: 패배</div>
+            {% elif user_game.attack_num < user_game.defend_num %}
+            <div class="game-info">결과: 승리</div>
+            {% endif %}
         {% endif %}
       {% endif %}
-      <a href="{% url 'game:detail' user_game.id %}?counter={{ forloop.revcounter }}">
-        <div class="game-detail"><p>게임정보</p></div>
-      </a>
-    </div>
-    {% endfor %}
+    {% endif %}
+    <a href="{% url 'game:detail' user_game.id %}?counter={{ forloop.revcounter }}">
+      <div class="game-detail"><p>게임정보</p></div>
+    </a>
   </div>
+  {% endfor %}
 </div>
 
 {%endblock%}

@@ -1,4 +1,5 @@
 @import url(reset.css);
+
 body {
   background-color: black;
   color: white;
@@ -16,6 +17,10 @@ body::before {
   top: 0;
   left: 0;
   z-index: -1;
+}
+main {
+  overflow-y: scroll;
+  overflow: hidden;
 }
 header {
   height: 7rem;
@@ -39,7 +44,8 @@ header {
 footer {
   position: absolute;
   bottom: 0;
-  width: 100vw;
+  left: 0;
+  width: 100%;
   height: 3rem;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -48,6 +54,7 @@ footer {
   align-items: center;
   font-size: 1rem;
   color: gray;
+  z-index: 1;
 }
 a {
   text-decoration: none;

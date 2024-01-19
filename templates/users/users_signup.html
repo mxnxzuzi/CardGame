@@ -3,9 +3,11 @@
 <title>회원가입</title>
 {% endblock %} {% block content %}
 <div class="form-container">
-  <form method="POST" action="">
-    {% csrf_token %} {{ form }}
-    <input type="submit" value="SignUp" class="form-btn" />
-  </form>
+  <div class="form-page">
+    <form method="POST" action="">
+      {% csrf_token %} {{ form }}
+      <input type="submit" value="SignUp" class="form-btn" />
+    </form>
+  </div>
 </div>
 {% endblock content %}

@@ -6,6 +6,7 @@
   <div class="form-container">
     <form action="{% url 'game:defend' pk %}?counter={{ counter }}" method="post" enctype="multipart/form-data">
       {%csrf_token%} {{form.as_p}}
+      <input name="counter" value="{{counter}}" type="hidden">
       <button class="form-btn">¤ 반격하기 ¤</button>
     </form>
   </div>

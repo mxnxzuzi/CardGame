@@ -3,6 +3,9 @@ from .forms import SignupForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 from .models import *
+from .forms import NicknameUpdateForm
+from django.contrib.auth import get_user_model
+from allauth.socialaccount.models import SocialAccount
 
 # Create your views here.
 def main(request):
@@ -75,3 +78,30 @@ def set_name(request):
     else:
         return redirect('game:main')
     
+def delete(request, pk):
+    if request.method == 'POST':
+        User = get_user_model()
+        user = User.objects.get(id=pk)
+        
+        # 소셜 로그인 정보 확인
+        social_accounts = SocialAccount.objects.filter(user=user)
+        
+        # 소셜 로그인 정보 삭제
+        for social_account in social_accounts:
+            social_account.delete()
+        
+        # 사용자 삭제
+        user.delete()
+    
+    return redirect('game:main')
+
+def update(request, pk):
+    user = User.objects.get(id=pk)
+    if request.method == 'GET':
+        form = NicknameUpdateForm(instance=user)
+        ctx = {'form': form, 'pk': pk}
+        return render(request, 'users/users_update.html', ctx)
+    form = NicknameUpdateForm(request.POST, instance=user)
+    if form.is_valid():
+        form.save()
+    return redirect('game:main')

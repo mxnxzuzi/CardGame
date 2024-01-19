@@ -6,3 +6,8 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields= ['username','nickname']
+        
+class NicknameUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['nickname']

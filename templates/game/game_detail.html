@@ -2,27 +2,41 @@
 <link rel="stylesheet" href="{%static 'css/game/game_detail.css'%}" />
 <title>게임 정보</title>{% endblock %} {%block content%}
 <div class="detail-container">
-  <p>id- attacker VS defender</p>
+  <p>{{ counter }} - VS {{ enemy }}</p>
 
-  <!-- 조건문처리 -->
-  <!-- <div class="mode">
-    <p>상태</p>
-    <p>나-내숫자</p>
-    <form action="" method="post"><button>게임 취소</button></form>
-  </div> -->
-
-  <!-- <div class="mode">
-    <button id="go-defend">대응하기</button>
-  </div> -->
-
+  {% if user_game.now == False %}
+    {% if user_game.attack_user.id == user.id %}
+    <div class="mode">
+      <p>진행 중...</p>
+      <p>나: {{ user_num }}</p>
+      <form action="{% url 'game:delete' user_game.pk %}" method="post"><button>게임 취소</button></form>
+      <a href="{% url 'game:list'%}"><button id="view-all">전적 목록</button></a>
+    </div>
+    {% else %}
+    <a href="{% url 'game:defend' user_game.pk %}" id="go-defend">대응하기</a>
+    <a href="{% url 'game:list'%}"><button id="view-all">전체 목록</button></a>
+    {% endif %}
+  {% else %}
   <div class="mode">
-    <p>조건: 더 많은 사람이 이깁니다</p>
-    <p>user: 숫자</p>
-    <p>나: 내숫자</p>
+    {% if user_game.game_num == 1 %}
+    <p>숫자가 더 작은 사람이 대결에서 이깁니다</p>
+    {% else %}
+    <p>숫자가 더 큰 사람이 대결에서 이깁니다</p>
+    {% endif %}
+    <p>나: {{ user_num }}</p>
+    <p>{{ enemy }}: {{ enemy_num }}</p>
+    {% if winner == user.nickname %}
     <p>결과: 승리</p>
-    <p>점수: 내숫자</p>
+    <p>점수: {{ user_num }}점</p>
+    {% elif winner == '' %}
+    <p>결과: 무승부</p>
+    <p>점수: 0점</p>
+    {% else %}
+    <p>결과: 패배</p>
+    <p>점수: - {{user_num}}점</p>
+    {% endif %}
   </div>
-
   <a href="{% url 'game:list'%}"><button id="view-all">전체 목록</button></a>
+  {% endif %}
 </div>
 {%endblock%}

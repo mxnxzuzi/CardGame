@@ -16,6 +16,7 @@
     {% else %}
     <div class="user-info">{{ forloop.revcounter }} - vs {{ user_game.attack_user.nickname }}</div>
     {% endif %}
+
     {% if user_game.now == False %}
       {% if user_game.attack_user.id == user.id %}
       <div class="game-info">
@@ -32,13 +33,40 @@
       </div>
       {% endif %}
     {% else %}
-      {% if user_game.winner == user.username %}
-      <div class="game-info">결과: 승리</div>
+      {% if user_game.attack_num == user_game.defend_num %}
+      <div class="game-info">결과: 무승부</div>
+      {% endif %}
+      {% if user_game.game_num == 1 %}
+        {% if user_game.attack_user.id == user.id %}
+          {% if user_game.attack_num < user_game.defend_num %}
+          <div class="game-info">결과: 승리</div>
+          {% elif user_game.attack_num > user_game.defend_num %}
+          <div class="game-info">결과: 패배</div>
+          {% endif %}
+        {% else %}
+          {% if user_game.attack_num < user_game.defend_num %}
+          <div class="game-info">결과: 패배</div>
+          {% elif user_game.attack_num > user_game.defend_num %}
+          <div class="game-info">결과: 승리</div>
+          {% endif %}
+        {% endif %}
       {% else %}
-      <div class="game-info">결과: 패배</div>
+        {% if user_game.attack_user.id == user.id %}
+            {% if user_game.attack_num > user_game.defend_num %}
+            <div class="game-info">결과: 승리</div>
+            {% elif user_game.attack_num < user_game.defend_num %}
+            <div class="game-info">결과: 패배</div>
+            {% endif %}
+        {% else %}
+            {% if user_game.attack_num > user_game.defend_num %}
+            <div class="game-info">결과: 패배</div>
+            {% elif user_game.attack_num < user_game.defend_num %}
+            <div class="game-info">결과: 승리</div>
+            {% endif %}
+        {% endif %}
       {% endif %}
     {% endif %}
-    <a href="{% url 'game:detail' user_game.id %}?counter={{ forloop.revcounter }}">
+    <a href="{% url 'game:detail' user_game.id %}?counter={{ forloop.counter }}">
       <div class="game-detail"><p>게임정보</p></div>
     </a>
   </div>

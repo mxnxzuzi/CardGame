@@ -63,7 +63,7 @@ def set_name(request):
         user.nickname=new_name
         user.save()
         return redirect("users:main")
-    if request.user.nickname==None:
+    if request.user.nickname==None or request.user.nickname=="":
         return render(request, "users/users_setname.html")
     else:
         return redirect('game:main')

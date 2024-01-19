@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from apps.users.models import User
 from .models import *
 import random
+from django.contrib import auth
 
 def main(request):
     if request.method == 'POST':
@@ -47,3 +48,22 @@ def attack(request, pk):
     game.save()
     print(game.game_now)
     return render(request, 'game/game_attack.html', ctx)
+
+def game_list(request):
+    games = Game.objects.all()
+    user_id = auth.get_user(request).id
+    user_games = games.filter(models.Q(attack_user=user_id) | models.Q(defend_user=user_id))
+    user_games = user_games.order_by("id")
+    ctx = {
+        'user_games': user_games
+    }
+    return render(request, 'game/game_list.html', ctx)
+
+def game_detail(request):
+    return render(request, 'game/game_detail.html')
+
+def game_delete(request, pk):
+    if request.method == 'POST':
+        user_game = Game.objects.get(id=pk)
+        user_game.delete()
+    return redirect("game:list")

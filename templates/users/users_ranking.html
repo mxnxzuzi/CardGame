@@ -3,15 +3,33 @@
 <title>랭킹보기</title>
 {% endblock %} {% block content %}
 <div class="ranking-container">
-  <p>Piro 명예의 전당</p>
+  <p>Piro20 명예의 전당</p>
+  <div class="rank">
+    <p style="color:lightgreen;"> 순위 </p>
+    <p style="color:lightgreen;"> 닉네임 </p>
+    <p style="color:lightgreen;"> 포인트 </p>
+  </div>
   {% for ranker in rankers %}
   <div class="rank">
-    <p>{{ forloop.counter }}등</p>
-    <p>{{ranker.user.nickname}}</p>
-    <p>총점수 : {{ranker.points}}</p>
+    {% if forloop.counter == 1 %}
+      <p>{{ forloop.counter }}등 🏆️ </p>
+      <p>{{ranker.nickname}}</p>
+      <p>{{ranker.points}} points</p>
+    {% elif forloop.counter == 2 %}
+      <p>{{ forloop.counter }}등 🥈 </p>
+      <p>{{ranker.nickname}}</p>
+      <p>{{ranker.points}} points</p>     
+    {% elif forloop.counter == 3 %}
+      <p>{{ forloop.counter }}등 🥉 </p>
+      <p>{{ranker.nickname}}</p>
+      <p>{{ranker.points}} points</p>
+    {% else %}
+      <p>{{ forloop.counter }}등</p>
+      <p>{{ranker.nickname}}</p>
+      <p>{{ranker.points}} points</p>
+    {% endif %}   
   </div>
   {% endfor %}
-
   <a href="{% url 'game:list'%}"><button id="view-all">전체 목록</button></a>
 </div>
 {% endblock %}

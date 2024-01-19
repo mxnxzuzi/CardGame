@@ -52,7 +52,8 @@ def logout(request):
 
 def ranking(request):
     print(auth.get_user(request).id)
-    rankers=User.objects.order_by("-points")
+    rankers=User.objects.order_by("-points")[:5]
+    print(rankers)
     return render(request, "users/users_ranking.html", {'rankers':rankers})
 
 def set_name(request):

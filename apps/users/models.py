@@ -5,6 +5,6 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     points=models.IntegerField(default=0)
     nickname=models.CharField(max_length=24, null=False)
-    
+
     def __str__(self):
         return self.nickname

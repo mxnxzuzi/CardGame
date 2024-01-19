@@ -26,6 +26,7 @@ def defend(request, pk):
     game.now = True
     game.save()
 
+    counter = request.POST.get('counter', None)
     users = User.objects.all()
     user_game = Game.objects.get(id=pk)
     user_nickname = auth.get_user(request).nickname
@@ -66,7 +67,7 @@ def defend(request, pk):
     me.save()
     other.save()
 
-    return redirect(f'../detail/{pk}')
+    return redirect(f'../detail/{pk}?counter={counter}')
 
 def attack(request):
     return render(request, 'game/game_attacking.html')
@@ -78,7 +79,7 @@ def attack_choice(request):
             game = form.save(commit=False)
             game.attack_user = request.user
             game.save()
-            return redirect('game:attacking', pk=game.id)
+            return redirect('game:list')
     else:
         form = GameForm(current_user=request.user)
 

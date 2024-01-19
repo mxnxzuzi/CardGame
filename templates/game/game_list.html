@@ -66,7 +66,7 @@
         {% endif %}
       {% endif %}
     {% endif %}
-    <a href="{% url 'game:detail' user_game.id %}?counter={{ forloop.counter }}">
+    <a href="{% url 'game:detail' user_game.id %}?counter={{ forloop.revcounter }}">
       <div class="game-detail"><p>게임정보</p></div>
     </a>
   </div>

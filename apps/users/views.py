@@ -6,7 +6,7 @@ from .models import *
 
 # Create your views here.
 def main(request):
-    return render(request, "index.html")
+    return redirect('game:main')
 
 
 def signup(request):
@@ -16,7 +16,7 @@ def signup(request):
             user = form.save()
             print(user)
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return redirect('users:main')
+            return redirect('game:main')
         else:
             return redirect('users:signup')
     else:
@@ -24,8 +24,8 @@ def signup(request):
         context = {
             'form': form,
         }
-        return render(request, template_name='users/signup.html', context=context)
 
+        return render(request, 'users/users_signup.html', context=context)
 
 def login(request):
     if request.method == 'POST':
@@ -33,25 +33,28 @@ def login(request):
         if form.is_valid():
             user = form.get_user()
             auth.login(request, user)
-            return redirect('users:main')
+            return redirect('game:main')
         else:
             context = {
                 'form': form,
             }
-            return render(request, template_name='users/login.html', context=context)
+
+            return render(request, template_name='users/users_login.html', context=context)
     else:
         form = AuthenticationForm()
         context = {
             'form': form,
         }
-        return render(request, template_name='users/login.html', context=context)
+        return render(request, template_name='users/users_login.html', context=context)
 
 
 def logout(request):
     auth.logout(request)
-    return redirect('users:main')
+    return redirect('game:main')
 
 def ranking(request):
     print(auth.get_user(request).id)
     rankers=User.objects.order_by("-points")
-    return render(request, "users/user_ranking.html", {'rankers':rankers})
+    context={
+        'rankers':rankers}
+    return render(request, "users/users_ranking.html", context=context)

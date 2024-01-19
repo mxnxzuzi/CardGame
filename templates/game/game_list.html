@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% load static %} {%block head%}
+<link rel="stylesheet" href="{%static 'css/game/game_list.css'%}" />
+<title>전적보기</title>{% endblock %} {%block content%}
+
+<div id="description">
+  당신의 게임 전적입니다.<br />전행 중인 게임은 취소할 수 있어요.
+</div>
+<div id="login-info">
+  <p>현재 플레이어: {{user.username}}</p>
+</div>
+<div id="game-list">
+  <div class="game">
+    <div class="user-info">id - attack VS defender</div>
+    <div class="game-info">결과: 승리</div>
+    <a href="{% url 'game:detail'%}">
+      <div class="game-detail"><p>게임정보</p></div>
+    </a>
+  </div>
+  <!-- 나중에 반복문,조건문처리 -->
+  <div class="game">
+    <div class="user-info">id - attack VS defender</div>
+    <div class="game-info">결과: 승리</div>
+    <div class="game-detail"><p>게임정보</p></div>
+  </div>
+  <div class="game">
+    <div class="user-info">id - attack VS defender</div>
+    <div class="game-info">
+      진행중...
+      <form action="" method="post"><button>게임 취소</button></form>
+    </div>
+    <a href="">
+      <div class="game-detail"><p>게임정보</p></div>
+    </a>
+  </div>
+</div>
+
+{%endblock%}

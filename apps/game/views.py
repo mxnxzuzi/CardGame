@@ -6,22 +6,37 @@ import random
 from .forms import GameForm
 
 def main(request):
+    return render(request, 'game/game_main.html')
+def game_list(request):
+    return render(request, 'game/game_list.html')
+
+def detail(request):
+    return render(request, 'game/game_detail.html')
+
+def defend(request):
+    return render(request, 'game/game_defend.html')
+def attack(request):
+    return render(request, 'game/game_attacking.html')
+
+def attack_choice(request):
     if request.method == 'POST':
         form = GameForm(request.POST, current_user=request.user)
         if form.is_valid():
             game = form.save(commit=False)
             game.attack_user = request.user 
             game.save()
-            return redirect('game:attack', pk=game.id)
+            return redirect('game:attacking', pk=game.id)
     else:
         form = GameForm(current_user=request.user)
 
-    ctx = {'form': form}
-    return render(request, 'game/game_main.html', ctx)
+    games = Game.objects.all()
+    game = games.last()  # 가장 최근에 생성된 게임 객체를 가져옵니다.
+    ctx = {'games': games, 'form': form, 'game': game}
+    return render(request, 'game/game_attack.html', ctx)
 
 
 
-def attack(request, pk):
+def attacking(request, pk):
     game = Game.objects.get(id=pk)
     ctx = {'game': game}
     
@@ -43,4 +58,4 @@ def attack(request, pk):
         
         game.game_now = True
     game.save()
-    return render(request, 'game/game_attack.html', ctx)
+    return render(request, 'game/game_attacking.html', ctx)

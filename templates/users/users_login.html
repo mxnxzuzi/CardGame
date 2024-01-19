@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% load socialaccount %} {% load static %} {%
+providers_media_js %} {% block head %}
+<link rel="stylesheet" href="{%static 'css/users/users_login.css'%}" />
+<title>소셜 로그인</title>
+{% endblock %} {% block header %} {% endblock %} {% block content %}
+<div id="login-container">
+  <div id="login-logo">CARDGAME</div>
+  <br />
+  <a href="{% provider_login_url 'google' %}">
+    <div id="google-btn">
+      <div></div>
+      <p>구글 계정 로그인</p>
+    </div>
+  </a>
+  <a href="{% provider_login_url 'kakao' %}">
+    <div id="kakao-btn">
+      <div></div>
+      <p>카카오 계정 로그인</p>
+    </div>
+  </a>
+  <div class="login-form">
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="form-element">{{ form }}</div>
+      <button class="form-btn">Login</button>
+    </form>
+  </div>
+  <a href="{% url 'users:signup'%}">
+    <div id="signup-btn">
+      <p>회원가입</p>
+    </div>
+  </a>
+</div>
+{% endblock %}

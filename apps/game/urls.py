@@ -5,5 +5,7 @@ app_name = 'game'
 
 urlpatterns = [
     path('', main, name='main'),
-    path('attack/<int:pk>/', attack, name ='attack'),
+    path('attack/', attack, name ='attack'),
+    path('list/', attack, name ='list'),
 ]
+

@@ -6,8 +6,7 @@ from .models import *
 
 # Create your views here.
 def main(request):
-    return render(request, "index.html")
-
+    return redirect('game:main')
 
 def signup(request):
     if request.method == 'POST':
@@ -16,7 +15,7 @@ def signup(request):
             user = form.save()
             print(user)
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return redirect('users:main')
+            return redirect('game:main')
         else:
             return redirect('users:signup')
     else:
@@ -24,7 +23,7 @@ def signup(request):
         context = {
             'form': form,
         }
-        return render(request, template_name='users/signup.html', context=context)
+        return render(request, template_name='users/users_signup.html', context=context)
 
 
 def login(request):
@@ -38,13 +37,13 @@ def login(request):
             context = {
                 'form': form,
             }
-            return render(request, template_name='users/login.html', context=context)
+            return render(request, template_name='users/users_login.html', context=context)
     else:
         form = AuthenticationForm()
         context = {
             'form': form,
         }
-        return render(request, template_name='users/login.html', context=context)
+        return render(request, template_name='users/users_login.html', context=context)
 
 
 def logout(request):
@@ -54,15 +53,18 @@ def logout(request):
 def ranking(request):
     print(auth.get_user(request).id)
     rankers=User.objects.order_by("-points")
-    return render(request, "users/user_ranking.html", {'rankers':rankers})
+    return render(request, "users/users_ranking.html", {'rankers':rankers})
 
 def set_name(request):
     if request.method=="POST":
         user=request.user
         new_name=request.POST["name"]
         print(new_name)
-        user.username=new_name
+        user.nickname=new_name
         user.save()
         return redirect("users:main")
-    return render(request, "users/set_name.html")
+    if request.user.nickname==None:
+        return render(request, "users/users_setname.html")
+    else:
+        return redirect('game:main')
     

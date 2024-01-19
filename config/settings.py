@@ -93,6 +93,12 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': 'dpUm0kOKsNz4WOnVJ709Re1DL5LEEaRZ',
         }
     },
+    'naver': {
+        'APP': {
+            'client_id': '8HoaspRp0JUPnWMNjDmW',
+            'secret': 'Y9lj5hDLm8',
+        }
+    },    
 }
 
 

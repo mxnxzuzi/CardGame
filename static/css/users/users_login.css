@@ -42,11 +42,11 @@
 }
 
 #google-btn > div {
-  background-image: url("../img/google.png");
+  background-image: url("/static/img/google.png");
 }
 
 #kakao-btn > div {
-  background-image: url("../img/kakao.png");
+  background-image: url("/static/img/kakao.png");
   width: 2rem;
   height: 2rem;
   background-size: cover;

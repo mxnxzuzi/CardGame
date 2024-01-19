@@ -3,18 +3,19 @@
 <title>전적보기</title>{% endblock %} {%block content%}
 
 <div id="description">
-  당신의 게임 전적입니다.<br />전행 중인 게임은 취소할 수 있어요.
+  <p>게임전적</p>
+  당신의 게임 전적을 모두 보여주는 페이지입니다. 게임의 승패에 따라, 당신의 카드에 따라 포인트가 적립, 삭제됩니다. <br />진행 중인 게임은 취소할 수 있으며 결과가 나온 게임은 다시 되돌릴 수 없습니다.
 </div>
 <div id="login-info">
-  <p>현재 플레이어: {{user.nickname}}</p>
+  <p><strong>|</strong> 현재 플레이어: {{user.nickname}}</p>
 </div>
 <div id="game-list">
   {% for user_game in user_games %}
   <div class="game">
     {% if user_game.attack_user.id == user.id %}
-    <div class="user-info">{{ forloop.revcounter }} - vs {{ user_game.defend_user.nickname }}</div>
+    <div class="user-info"><strong>{{ forloop.revcounter }}</strong> - <strong>VS</strong> {{ user_game.defend_user.nickname }}</div>
     {% else %}
-    <div class="user-info">{{ forloop.revcounter }} - vs {{ user_game.attack_user.nickname }}</div>
+    <div class="user-info"><strong>{{ forloop.revcounter }}</strong> - <strong>VS</strong> {{ user_game.attack_user.nickname }}</div>
     {% endif %}
 
     {% if user_game.now == False %}
@@ -29,7 +30,7 @@
       {% else %}
       <div class="game-info">
         진행중...
-        <a href="{% url 'game:defend' user_game.id %}?counter={{ forloop.revcounter }}">반격하기</a>
+        <a href="{% url 'game:defend' user_game.id %}?counter={{ forloop.revcounter }}"><button>반격하기</button></a>
       </div>
       {% endif %}
     {% else %}

@@ -30,9 +30,8 @@ button {
   border: 3px solid white;
   cursor: pointer;
   font-family: "WarhavenB";
-  width: 7rem;
+  
 }
-#view-all,
-#go-defend {
-  margin-left: 13rem;
+#view-all {
+  margin-left: 8rem;
 }

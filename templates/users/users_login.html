@@ -4,20 +4,30 @@ providers_media_js %} {% block head %}
 <title>소셜 로그인</title>
 {% endblock %} {% block header %} {% endblock %} {% block content %}
 <div id="login-container">
-  <div id="login-logo">CARDGAME</div>
+  <a id="login-logo" href="{% url 'game:main' %}">CARDGAME</a>
   <br />
-  <a href="{% provider_login_url 'google' %}">
-    <div id="google-btn">
+
+  <form action="{% provider_login_url 'google' %}" method="post">
+    {% csrf_token %}
+    <button id="google-btn">
       <div></div>
-      <p>구글 계정 로그인</p>
-    </div>
-  </a>
-  <a href="{% provider_login_url 'kakao' %}">
-    <div id="kakao-btn">
+      <p>구글 로그인</p>
+    </button>
+  </form>
+  <form action="{% provider_login_url 'naver' %}" method="post">
+    {% csrf_token %}
+    <button id="naver-btn">
       <div></div>
-      <p>카카오 계정 로그인</p>
-    </div>
-  </a>
+      <p>네이버 로그인</p>
+    </button>
+  </form>
+  <form action="{% provider_login_url 'kakao' %}" method="post">
+    {% csrf_token %}
+    <button id="kakao-btn">
+      <div></div>
+      <p>카카오 로그인</p>
+    </button>
+  </form>
   <div class="login-form">
     <form method="POST" action="">
       {% csrf_token %}

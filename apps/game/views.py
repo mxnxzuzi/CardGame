@@ -5,6 +5,7 @@ from .models import *
 import random
 from .forms import GameForm
 
+
 def main(request):
     return render(request, 'game/game_main.html')
 def game_list(request):
@@ -15,6 +16,7 @@ def detail(request):
 
 def defend(request):
     return render(request, 'game/game_defend.html')
+
 def attack(request):
     return render(request, 'game/game_attacking.html')
 
@@ -59,3 +61,4 @@ def attacking(request, pk):
         game.game_now = True
     game.save()
     return render(request, 'game/game_attacking.html', ctx)
+

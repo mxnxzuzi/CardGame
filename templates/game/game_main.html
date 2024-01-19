@@ -15,8 +15,9 @@
     <div class="btn">게임하기</div>
   </a>
   {%else%}
-  <p id="login-info">{{user.username}} 로그인 중..</p>
+  <p id="login-info">{{user.nickname}} 로그인 중..</p>
   <a href="{%url 'game:attack_choice' %}">
+
     <div class="btn">게임하기</div>
   </a>
   <a href="{%url 'game:list'%}">

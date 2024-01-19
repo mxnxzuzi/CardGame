@@ -7,7 +7,7 @@
   {% for ranker in rankers %}
   <div class="rank">
     <p>{{ forloop.counter }}등</p>
-    <p>{{ranker.username}}</p>
+    <p>{{ranker.user.nickname}}</p>
     <p>총점수 : {{ranker.points}}</p>
   </div>
   {% endfor %}

@@ -4,22 +4,13 @@
 {% endblock %} {% block content %}
 <div class="ranking-container">
   <p>Piro 명예의 전당</p>
-
+  {% for ranker in rankers %}
   <div class="rank">
-    <p>'1'등</p>
-    <p>'이름'</p>
-    <p>총점수: '10'점</p>
+    <p>{{ forloop.counter }}등</p>
+    <p>{{ranker.username}}</p>
+    <p>총점수 : {{ranker.points}}</p>
   </div>
-  <div class="rank">
-    <p>'2'등</p>
-    <p>'이름'</p>
-    <p>총점수: '10'점</p>
-  </div>
-  <div class="rank">
-    <p>'3'등</p>
-    <p>'이름'</p>
-    <p>총점수: '10'점</p>
-  </div>
+  {% endfor %}
 
   <a href="{% url 'game:list'%}"><button id="view-all">전체 목록</button></a>
 </div>

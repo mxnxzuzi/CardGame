@@ -9,17 +9,17 @@
   <i class="ri-money-dollar-circle-line"></i>
   <p>전 세계 피로그래머와 한 판 도박</p>
   <p>숫자카드게임</p>
-  {%if not users.is_authenticated %}
-  <p id="login-info"><strong>강원랜드토박님</strong>이 로그인 중..</p>
+  {%if not user.is_authenticated %}
+  <a href="{%url 'users:login'%}">
+    <div class="btn">게임하기</div>
+  </a>
+  {%else%}
+  <p id="login-info">{{user.username}} 로그인 중..</p>
   <a href="{%url 'game:attack'%}">
     <div class="btn">게임하기</div>
   </a>
   <a href="{%url 'game:list'%}">
     <div class="btn">전적보기</div>
-  </a>
-  {%else%}
-  <a href="{%url 'game:login'%}">
-    <div class="btn">게임하기</div>
   </a>
   {%endif%}
 </div>

@@ -55,3 +55,14 @@ def ranking(request):
     print(auth.get_user(request).id)
     rankers=User.objects.order_by("-points")
     return render(request, "users/user_ranking.html", {'rankers':rankers})
+
+def set_name(request):
+    if request.method=="POST":
+        user=request.user
+        new_name=request.POST["name"]
+        print(new_name)
+        user.username=new_name
+        user.save()
+        return redirect("users:main")
+    return render(request, "users/set_name.html")
+    

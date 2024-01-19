@@ -1,0 +1,9 @@
+{% extends '../index.html' %}
+
+{% block content %}
+<form method="POST" action="">
+    {% csrf_token %}
+    새로운 유저이름 : <input name="name" type="text"/>
+    <input type="submit" value="SignUp">
+</form>
+{% endblock content %}

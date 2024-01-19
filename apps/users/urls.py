@@ -9,4 +9,5 @@ urlpatterns = [
     path("logout/", logout, name="logout"),
     path("signup/", signup, name="signup"),
     path("ranking/", ranking, name="ranking"),
+    path("set_name/", set_name, name="setname"),
 ]

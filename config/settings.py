@@ -58,9 +58,9 @@ INSTALLED_APPS = [
 SITE_ID = 3
 
 # 로그인 후 리디렉션할 페이지
-LOGIN_REDIRECT_URL = '/users'
+LOGIN_REDIRECT_URL = '/users/set_name/'
 # 로그아웃 후 리디렉션할 페이지
-ACCOUNT_LOGOUT_REDIRECT_URL = '/users'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/users/'
 # 로그아웃 버튼 클릭 시 자동 로그아웃
 ACCOUNT_LOGOUT_ON_GET = True
 

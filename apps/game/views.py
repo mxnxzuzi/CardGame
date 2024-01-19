@@ -7,14 +7,14 @@ from .forms import GameForm
 
 def main(request):
     if request.method == 'POST':
-        form = GameForm(request.POST)
+        form = GameForm(request.POST, current_user=request.user)
         if form.is_valid():
             game = form.save(commit=False)
             game.attack_user = request.user 
             game.save()
             return redirect('game:attack', pk=game.id)
     else:
-        form = GameForm()
+        form = GameForm(current_user=request.user)
 
     ctx = {'form': form}
     return render(request, 'game/game_main.html', ctx)

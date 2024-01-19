@@ -1,20 +1,21 @@
-
-
 {% extends 'base.html' %} {% load static %} {%block head%}
 <title>공격중</title>
-<link rel="stylesheet" href="{%static 'css/game/game_attack.css'%}" /> 
+<link rel="stylesheet" href="{%static 'css/game/game_attack.css'%}" />
 {% endblock %} {%block content%}
 
 <div class="wrap">
-    <div class="form-container2">
-        <p>{{game.id}}&nbsp;-&nbsp;{{game.attack_user}}&nbsp;vs&nbsp;{{game.defend_user}}</p>
-        {% if game.game_now %}
-            <p>{{game_result}}</p>
-        {% else %}
-            <p>진행 중</p>
-        {% endif %}
-    
-        <p>나: {{game.attack_num}}</p>
-    </div>
+  <div class="form-container2">
+    <p>
+      {{game.id}}&nbsp;-&nbsp;{{game.attack_user.nickname}}&nbsp;vs&nbsp;{{game.defend_user.nickname}}
+    </p>
+    {% if game.game_now %}
+    <p>{{game_result}}</p>
+    {% else %}
+    <p>진행 중</p>
+    {% endif %}
+
+    <p>나: {{game.attack_num}}</p>
+    <a href="{% url 'game:list'%}"><button id="view-all">전적보기</button></a>
+  </div>
 </div>
 {%endblock%}

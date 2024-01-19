@@ -8,17 +8,21 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 8rem;
-  width: 30%;
+  margin: 100px 0;
   height: 50%;
   background-color: black;
   padding: 3rem;
   gap: 2rem;
 }
+
 .rank {
+  width: 500px;
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  justify-content: space-between;
+}
+
+.rank>p {
+  width: 160px;
 }
 button {
   background-color: transparent;

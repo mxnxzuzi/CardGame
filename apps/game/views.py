@@ -20,15 +20,23 @@ def defend(request, pk):
             'counter': counter
         }
         return render(request, 'game/game_defend.html', ctx)
+    print(request.POST)
     form = DefendForm(request.POST, instance=game)
+    print(form)
     if form.is_valid():
         form.save()
+    print(game)
     game.now = True
     game.save()
 
+
+    counter = request.POST['counter']
+
     users = User.objects.all()
+    print(pk)
+    print()
     user_game = Game.objects.get(id=pk)
-    counter = request.POST.get('counter', None)
+    print(user_game)
     user_nickname = auth.get_user(request).nickname
     user_num = 0
     enemy = ''

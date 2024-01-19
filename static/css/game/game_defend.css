@@ -1,5 +1,5 @@
 #defend-container {
-  margin-top: 10rem;
+  margin-top: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,4 +9,19 @@
 .form-btn {
   font-size: 2rem;
   width: 15rem;
+}
+.form-container{
+  margin: 0;
+}
+.form-container p{
+  margin-bottom: 2rem;display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  font-size:2rem;
+
+}
+#id_defend_num{
+  height: 30px;
+  width: 50px;
 }

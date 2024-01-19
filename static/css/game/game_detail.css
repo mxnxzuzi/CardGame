@@ -1,0 +1,38 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin: 8rem;
+  width: 30%;
+  height: 50%;
+  background-color: black;
+  padding: 3rem;
+  gap: 4rem;
+}
+.mode {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 2rem;
+}
+button {
+  background-color: transparent;
+  color: white;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border: 3px solid white;
+  cursor: pointer;
+  font-family: "WarhavenB";
+  width: 7rem;
+}
+#view-all,
+#go-defend {
+  margin-left: 13rem;
+}

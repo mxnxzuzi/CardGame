@@ -1,0 +1,63 @@
+#login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  gap: 1rem;
+}
+
+#login-logo {
+  font-size: 5rem;
+}
+
+#google-btn,
+#kakao-btn,
+#signup-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 20rem;
+  height: 5rem;
+  font-size: 2rem;
+  border: 2px solid white;
+  border-radius: 10px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#google-btn:hover,
+#kakao-btn:hover,
+#signup-btn:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: scale(1.01);
+}
+
+#google-btn > div,
+#kakao-btn > div {
+  width: 2rem;
+  height: 2rem;
+  background-size: cover;
+}
+
+#google-btn > div {
+  background-image: url("../img/google.png");
+}
+
+#kakao-btn > div {
+  background-image: url("../img/kakao.png");
+  width: 2rem;
+  height: 2rem;
+  background-size: cover;
+}
+
+.form-element > div {
+  margin: 2rem 0;
+}
+.form-btn {
+  font-size: 1.5rem;
+  margin-left: 7rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}

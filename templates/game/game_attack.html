@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %} {% load static %} {%block head%}
+<title>공격하기</title> 
+<link rel="stylesheet" href="{%static 'css/game/game_attack.css'%}" />
+{% endblock %} {%block content%}
+
+<div class="form-container">
+  <form action="{% url 'game:attack_choice' %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="form-fields">
+      {{ form.as_p }}
+    </div>
+    <button class="form-btn">¤ 공격하기 ¤</button>
+  </form>
+</div>
+{%endblock%}
+

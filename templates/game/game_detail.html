@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% load static %} {%block head%}
+<link rel="stylesheet" href="{%static 'css/game/game_detail.css'%}" />
+<title>게임 정보</title>{% endblock %} {%block content%}
+<div class="detail-container">
+  <p>{{ counter }} - VS {{ enemy }}</p>
+
+  {% if user_game.now == False %}
+    {% if user_game.attack_user.id == user.id %}
+    <div class="mode">
+      <p>진행 중...</p>
+      <p>나: {{ user_num }}</p>
+      <form action="{% url 'game:delete' user_game.pk %}" method="post">
+        {%csrf_token%}
+        <button>게임 취소</button>
+      </form>
+      <a href="{% url 'game:list'%}"><button id="view-all">전적 목록</button></a>
+    </div>
+    {% else %}
+    <a href="{% url 'game:defend' user_game.pk %}" id="go-defend">대응하기</a>
+    <a href="{% url 'game:list'%}"><button id="view-all">전체 목록</button></a>
+    {% endif %}
+  {% else %}
+  <div class="mode">
+    {% if user_game.game_num == 1 %}
+    <p>숫자가 더 작은 사람이 대결에서 이깁니다</p>
+    {% else %}
+    <p>숫자가 더 큰 사람이 대결에서 이깁니다</p>
+    {% endif %}
+    <p>나: {{ user_num }}</p>
+    <p>{{ enemy }}: {{ enemy_num }}</p>
+    {% if winner == user.nickname %}
+    <p>결과: 승리</p>
+    <p>점수: {{ user_num }}점</p>
+    {% elif winner == '' %}
+    <p>결과: 무승부</p>
+    <p>점수: 0점</p>
+    {% else %}
+    <p>결과: 패배</p>
+    <p>점수: - {{user_num}}점</p>
+    {% endif %}
+  </div>
+  <a href="{% url 'game:list'%}"><button id="view-all">전체 목록</button></a>
+  {% endif %}
+</div>
+{%endblock%}

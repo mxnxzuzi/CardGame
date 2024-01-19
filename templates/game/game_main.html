@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %} {% load static %} {%block head%}
+<link rel="stylesheet" href="{%static 'css/game/game_main.css'%}" />
+<link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
+<title>게임하기</title>{% endblock %} {%block content%}
+<div id="main-container">
+  <i class="ri-money-dollar-circle-line"></i>
+  <p>전 세계 피로그래머와 한 판 도박</p>
+  <p>숫자카드게임</p>
+  {%if not user.is_authenticated %}
+  <a href="{%url 'users:login'%}">
+    <div class="btn">게임하기</div>
+  </a>
+  {%else%}
+  <p id="login-info">{{user.nickname}} 로그인 중..</p>
+  <a href="{%url 'game:attack_choice' %}">
+
+    <div class="btn">게임하기</div>
+  </a>
+  <a href="{%url 'game:list' %}">
+    <div class="btn">전적보기</div>
+  </a>
+  {%endif%}
+</div>
+{%endblock%}

@@ -1,6 +1,20 @@
-from django.urls import path
+from django.urls import path,include
 from .views import *
 
-app_name='apps.game'
+app_name='game'
 
-urlpatterns = []
+urlpatterns = [
+    path('',main,name='main'),
+    # path('attack_main/', main, name='attack_main'),
+    path('attack', attack, name ='attack'),
+    path('attack_choice', attack_choice, name ='attack_choice'),
+    path('attacking/<int:pk>', attacking, name ='attacking'),
+    path('list/', game_list , name='list'),
+#     path('detail/<int:pk>/', detail, name='detail'),
+    # path('detail/<int:pk>/', detail, name='detail'),
+    path('detail/<int:pk>', game_detail, name='detail'),
+#     path('defend/<int:pk>/', defend, name="defend"),
+    path('defend/<int:pk>', defend, name="defend"),
+    path('delete/<int:pk>', game_delete, name='delete')
+]
+

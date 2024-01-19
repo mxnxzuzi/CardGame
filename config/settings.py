@@ -39,7 +39,68 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.game',
     'apps.users',
+    
+    #소셜 로그인 구현
+    
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # allauth - google
+    'allauth.socialaccount.providers.google',
+    # allauth - naver
+    'allauth.socialaccount.providers.naver',
+    # allauth - kakao
+    'allauth.socialaccount.providers.kakao',
 ]
+
+# allauth site_id
+SITE_ID = 3
+
+# 로그인 후 리디렉션할 페이지
+LOGIN_REDIRECT_URL = '/users/set_name/'
+# 로그아웃 후 리디렉션할 페이지
+ACCOUNT_LOGOUT_REDIRECT_URL = '/users/'
+# 로그아웃 버튼 클릭 시 자동 로그아웃
+ACCOUNT_LOGOUT_ON_GET = True
+
+# allauth - continue 버튼 생략
+# get 으로 사용하면 안됩니다.
+# SOCIALACCOUNT_LOGIN_ON_GET = True
+
+# allauth backends
+AUTHENTICATION_BACKENDS = (
+    # 'allauth' specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+    #Needed to login by username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+    
+)
+
+AUTH_USER_MODEL = 'users.User'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '82504951670-7t06tnstbrepf6a6g0git0f0629q8rv7.apps.googleusercontent.com',
+            'secret': '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',
+        }
+    },
+    'kakao': {
+        'APP': {
+            'client_id': '0f615540a8c5171a0e87411bb001edbf',
+            'secret': 'dpUm0kOKsNz4WOnVJ709Re1DL5LEEaRZ',
+        }
+    },
+    'naver': {
+        'APP': {
+            'client_id': '8HoaspRp0JUPnWMNjDmW',
+            'secret': 'Y9lj5hDLm8',
+        }
+    },    
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,6 +110,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -105,7 +167,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'Asia/Seoul'
 

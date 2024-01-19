@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{%static 'css/users/users_signup.css'%}" />
+<title>회원가입</title>
+{% endblock %} {% block content %}
+<div class="form-container">
+  <form method="POST" action="">
+    {% csrf_token %} 새로운 유저이름 : <input name="name" type="text" />
+    <br />
+    <input type="submit" value="SignUp" class="form-btn" />
+  </form>
+</div>
+{% endblock content %}

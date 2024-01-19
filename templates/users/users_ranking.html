@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{%static 'css/users/users_ranking.css'%}" />
+<title>랭킹보기</title>
+{% endblock %} {% block content %}
+<div class="ranking-container">
+  <p>Piro 명예의 전당</p>
+  {% for ranker in rankers %}
+  <div class="rank">
+    <p>{{ forloop.counter }}등</p>
+    <p>{{ranker.nickname}}</p>
+    <p>총점수 : {{ranker.points}}</p>
+  </div>
+  {% endfor %}
+
+  <a href="{% url 'game:list'%}"><button id="view-all">전체 목록</button></a>
+</div>
+{% endblock %}

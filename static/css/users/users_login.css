@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 5rem;
   gap: 1rem;
 }
 
@@ -20,16 +20,15 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: 18rem;
   height: 4rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: 2px solid white;
   border-radius: 10px;
   transition: background-color 0.3s, transform 0.3s;
   background-color: transparent;
   color: white;
   font-family: "WarhavenB";
-  width: 15rem;
+  width: 170px;
 }
 
 #google-btn:hover,
@@ -42,7 +41,8 @@
 
 #google-btn > div,
 #kakao-btn > div,
-#naver-btn > div {
+#naver-btn > div,
+#signup-btn > div {
   width: 2rem;
   height: 2rem;
   background-size: cover;
@@ -57,13 +57,25 @@
 #naver-btn > div {
   background-image: url("/static/img/naver.png");
 }
+#signup-btn > div {
+  background-image: url("/static/img/local.jpg");
+}
+
 
 .form-element > div {
   margin: 2rem 0;
 }
 .form-btn {
-  font-size: 1.5rem;
-  margin-left: 7rem;
-  padding: 0.5rem;
+  font-size: 1rem;
+  margin-left: 10rem;
+  padding: 10px;
   margin-bottom: 1rem;
+}
+
+.signups{
+  border-top: 2px solid white;
+  padding-top: 15px;
+  grid-template-columns: 1fr 1fr;
+  display: grid;
+  gap: 10px;
 }

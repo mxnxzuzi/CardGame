@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{%static 'css/game/game_detail.css'%}" />
 <title>게임 정보</title>{% endblock %} {%block content%}
 <div class="detail-container">
-  <p>{{ counter }} - VS {{ enemy }}</p>
+  <p>{{ counter }} - {{user.nickname}} VS {{ enemy }}</p>
 
   {% if user_game.now == False %}
     {% if user_game.attack_user.id == user.id %}

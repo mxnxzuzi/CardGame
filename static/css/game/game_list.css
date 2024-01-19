@@ -1,6 +1,15 @@
-#description,
+#description{
+  font-size: 12px;
+  color:lightgray;
+  margin: 3rem 1rem;
+}
+
 #login-info {
-  margin: 3rem 10rem;
+  margin: 2rem 1rem;
+}
+
+.game-container{
+  margin: 100px 20px;
 }
 
 #game-list {
@@ -10,7 +19,7 @@
   justify-content: center;
   border-top: 1px solid white;
   padding-top: 1rem;
-  margin: 0 10rem;
+  margin: 3rem 1rem;
 }
 
 .game {
@@ -55,4 +64,8 @@
 }
 .game-info button:hover {
   transform: scale(1.05);
+}
+
+.user-info{
+  display: flex;
 }

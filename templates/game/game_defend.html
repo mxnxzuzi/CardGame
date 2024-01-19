@@ -4,9 +4,9 @@
 <div id="defend-container">
   <p>'상대유저'에게 반격합니다.</p>
   <div class="form-container">
-    <form action="{% url 'game:defend' pk %}?counter={{ counter }}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'game:defend' pk %}" method="post" enctype="multipart/form-data">
       {%csrf_token%} {{form.as_p}}
-      <input name="counter" value="{{counter}}" type="hidden">
+      <input type="hidden" name="counter" value="{{ counter }}">
       <button class="form-btn">¤ 반격하기 ¤</button>
     </form>
   </div>

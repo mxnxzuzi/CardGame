@@ -9,7 +9,10 @@
     <div class="mode">
       <p>진행 중...</p>
       <p>나: {{ user_num }}</p>
-      <form action="{% url 'game:delete' user_game.pk %}" method="post"><button>게임 취소</button></form>
+      <form action="{% url 'game:delete' user_game.pk %}" method="post">
+        {%csrf_token%}
+        <button>게임 취소</button>
+      </form>
       <a href="{% url 'game:list'%}"><button id="view-all">전적 목록</button></a>
     </div>
     {% else %}

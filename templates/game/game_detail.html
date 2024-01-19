@@ -16,7 +16,7 @@
       <a href="{% url 'game:list'%}"><button id="view-all">전적 목록</button></a>
     </div>
     {% else %}
-    <a href="{% url 'game:defend' user_game.pk %}?counter={{ counter }}" id="go-defend">대응하기</a>
+    <a href="{% url 'game:defend' user_game.pk %}?counter={{ counter }}"><button id="go-defend">대응하기</button></a>
     <a href="{% url 'game:list'%}"><button id="view-all">전체 목록</button></a>
     {% endif %}
   {% else %}

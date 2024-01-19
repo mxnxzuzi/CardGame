@@ -7,22 +7,18 @@ from .forms import GameForm
 
 def main(request):
     if request.method == 'POST':
-        form = GameForm(request.POST, current_user=request.user)
+        form = GameForm(request.POST)
         if form.is_valid():
             game = form.save(commit=False)
             game.attack_user = request.user 
             game.save()
             return redirect('game:attack', pk=game.id)
-        
     else:
         form = GameForm()
 
-    user = request.user
-    other_users = User.objects.exclude(id=user.id)
-    games = Game.objects.all()
-    options = random.sample(range(1, 11), 5)
-    ctx = {'users': other_users, 'options': options, 'games': games, 'form': form}
+    ctx = {'form': form}
     return render(request, 'game/game_main.html', ctx)
+
 
 
 def attack(request, pk):

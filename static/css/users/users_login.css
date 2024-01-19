@@ -13,29 +13,36 @@
 
 #google-btn,
 #kakao-btn,
-#signup-btn {
+#signup-btn,
+#naver-btn {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: 20rem;
-  height: 5rem;
-  font-size: 2rem;
+  width: 18rem;
+  height: 4rem;
+  font-size: 1.5rem;
   border: 2px solid white;
   border-radius: 10px;
   transition: background-color 0.3s, transform 0.3s;
+  background-color: transparent;
+  color: white;
+  font-family: "WarhavenB";
+  width: 15rem;
 }
 
 #google-btn:hover,
 #kakao-btn:hover,
-#signup-btn:hover {
+#signup-btn:hover,
+#naver-btn:hover {
   background-color: rgba(0, 0, 0, 0.3);
   transform: scale(1.01);
 }
 
 #google-btn > div,
-#kakao-btn > div {
+#kakao-btn > div,
+#naver-btn > div {
   width: 2rem;
   height: 2rem;
   background-size: cover;
@@ -44,12 +51,11 @@
 #google-btn > div {
   background-image: url("/static/img/google.png");
 }
-
 #kakao-btn > div {
   background-image: url("/static/img/kakao.png");
-  width: 2rem;
-  height: 2rem;
-  background-size: cover;
+}
+#naver-btn > div {
+  background-image: url("/static/img/naver.png");
 }
 
 .form-element > div {

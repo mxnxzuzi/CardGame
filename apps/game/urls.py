@@ -4,8 +4,13 @@ from .views import *
 app_name = 'game'
 
 urlpatterns = [
-    path('', main, name='main'),
-    path('attack/', attack, name ='attack'),
-    path('list/', attack, name ='list'),
-]
-
+    path('',main,name='main'),
+    path('attack/',attack,name='attack'),
+    path('list/', game_list , name='list'),
+#     path('detail/<int:pk>/', detail, name='detail'),
+    # path('detail/<int:pk>/', detail, name='detail'),
+    path('detail/', detail, name='detail'),
+#     path('defend/<int:pk>/', defend, name="defend"),
+#     path('delete/<int:pk>/', delete, name="delete"),
+#     path('ranking/', ranking, name='ranking'),
+    path('defend/', defend, name="defend"),]

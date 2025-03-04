@@ -1,4 +1,3 @@
-# Piro20_CardGame_5
 ## 0. 게임소개
 - 로그인(카카오, 구글, 네이버, 아이디) 을 한다.
   * 네이버는 아이디를 등록해야 로그인 가능합니다.
@@ -41,23 +40,23 @@
     - 반격하기 구현
 
 ## 3. 주요 화면
-1. 시작화면
+### 1. 시작화면
 ![Image](https://github.com/user-attachments/assets/ec6383c1-7b2f-4a36-9670-0897f5b9c021)
-2. 로그인
+### 2. 로그인
 ![Image](https://github.com/user-attachments/assets/f7188e9e-a6ba-4960-b2bd-7cf50d17e341)
-3. 로그인 후 시작화면 (네이버 소셜로그인)
+### 3. 로그인 후 시작화면 (네이버 소셜로그인)
 ![Image](https://github.com/user-attachments/assets/9af15102-5759-4357-a959-2cc15ebcf387)
-4. (공격) 게임화면
+### 4. (공격) 게임화면
 ![Image](https://github.com/user-attachments/assets/515bc3db-6275-427a-8dee-dbd864b2d2ff)
-5. 전적화면
+### 5. 전적화면
 ![Image](https://github.com/user-attachments/assets/aa927433-8d58-4160-a5d2-b73fd62e0b73)
-6. 재로그인 (카카오톡 소셜로그인) 후 전적화면
+### 6. 재로그인 (카카오톡 소셜로그인) 후 전적화면
 ![Image](https://github.com/user-attachments/assets/098bde5f-0929-43a9-9962-089732ab114b)
-7. (반격) 개임화면
+### 7. (반격) 개임화면
 ![Image](https://github.com/user-attachments/assets/6125975d-56b6-43cd-a1c9-12a0ee3525ba)
-8. 결과화면
+### 8. 결과화면
 ![Image](https://github.com/user-attachments/assets/ed94fab4-5778-4c58-ba8a-8a57bf52a999)
-9. 랭킹보기 화면
+### 9. 랭킹보기 화면
 ![Image](https://github.com/user-attachments/assets/8f67c5a8-4a52-467c-9195-dee48e4de4b3)
 
 ## 4. 게임 로직
